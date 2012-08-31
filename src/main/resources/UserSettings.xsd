@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xs:element name="userSettings" type="UserSettingsType" />
+    <xs:complexType name="UserSettingsType">
+        <xs:sequence>
+            <xs:element name="reviewDefaultDirectory" type="xs:string" />
+            <xs:element name="directorySettings" type="DirectorySettingsType" />                    
+            <xs:element name="resolutionSettings" type="ResolutionSettingsType" />
+            <xs:element name="additionalSettings" type="AdditionalSettingsType" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DirectorySettingsType">
+        <xs:sequence>
+            <xs:element name="inputDirectory" type="xs:string" />
+            <xs:element name="outputDirectory" type="xs:string" />
+            <xs:element name="runOnSubdirectories" type="xs:boolean" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ResolutionSettingsType">
+        <xs:sequence>
+            <xs:element name="micrometerFile" type="xs:string" />
+            <xs:element name="objective" type="xs:string" />
+            <xs:element name="zoom" type="xs:double" />
+            <xs:element name="micronsPerPixel" type="xs:double" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AdditionalSettingsType">
+        <xs:sequence>
+            <xs:element name="rollingBallRadius" type="xs:double" />
+            <xs:element name="thresholdMethod" type="xs:string" />
+            <xs:element name="closeRadius" type="xs:double" />
+            <xs:element name="minWormArea" type="xs:double" />
+            <xs:element name="maxWormArea" type="xs:double" />
+            <xs:element name="minTubeness" type="xs:double" />
+            <xs:element name="doReview" type="xs:boolean" />
+            <xs:element name="doPreview" type="xs:boolean" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

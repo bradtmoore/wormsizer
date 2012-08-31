@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xs:include schemaLocation="./WormOutput.xsd" />
+    <xs:element name="experimentOutput" type="ExperimentOutputType" />
+    
+    <xs:complexType name="WormOutputsType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="wormOutput" type="WormOutputType" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ExperimentOutputType">
+        <xs:sequence>
+            <xs:element name="experimentId" type="xs:string" />
+            <xs:element name="experimentSettings" type="ExperimentSettingsType" />
+            <xs:element name="wormOutputs" type="WormOutputsType" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ExperimentSettingsType" >
+        <xs:sequence>
+            <xs:element name="micronsPerPixel" type="xs:double"/>
+            <xs:element name="rollingBallRadius" type="xs:double" />
+            <xs:element name="thresholdMethod" type="xs:string" />
+            <xs:element name="closeRadius" type="xs:double" />
+            <xs:element name="minWormArea" type="xs:double" />
+            <xs:element name="maxWormArea" type="xs:double" />
+            <xs:element name="minTubeness" type="xs:double" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

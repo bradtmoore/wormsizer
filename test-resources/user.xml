@@ -1,0 +1,22 @@
+<userSettings>
+	<directorySettings>
+		<inputDirectory>~</inputDirectory>
+		<outputDirectory>~</outputDirectory>
+		<runOnSubdirectories>true</runOnSubdirectories>
+	</directorySettings>
+	<resolutionSettings>
+		<micrometerFile>blargh.csv</micrometerFile>
+		<objective>1.0</objective>
+		<zoom>2.3</zoom>
+		<micronsPerPixel>0.022</micronsPerPixel>
+	</resolutionSettings>
+	<additionalSettings>
+		<rollingBallRadius>75.0</rollingBallRadius>
+		<thresholdMethod>MINIMUM</thresholdMethod>
+		<closeRadius>5.0</closeRadius>
+		<minWormArea>0.0</minWormArea>
+		<maxWormArea>9999999.99</maxWormArea>
+		<doReview>false</doReview>
+		<doPreview>true</doPreview>
+	</additionalSettings>
+</userSettings>

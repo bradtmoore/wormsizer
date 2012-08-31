@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:element name="wormOutput" type="WormOutputType" />
+    <xs:complexType name="WormType">
+        <xs:sequence>
+            <xs:element name="skeleton" type="xs:string" />                
+            <xs:element name="contour" type="xs:string" />
+            <xs:element name="segment" type="xs:string" />
+            <xs:element name="sampledRadii" type="xs:string" />
+            <xs:element name="sampledSkeleton" type="xs:string" />
+            <xs:element name="length" type="xs:double" /> <!-- microns -->
+            <xs:element name="middleWidth" type="xs:double" /> <!-- microns -->
+            <xs:element name="meanWidth" type="xs:double" /> <!-- microns -->
+            <xs:element name="volume" type="xs:double" /> <!-- (1000 cubic microns) -->
+            <xs:element name="id" type="xs:integer" />
+            <xs:element name="pass" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="WormsType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="worm" type="WormType" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="WormOutputType">
+        <xs:sequence>
+            <xs:element name="imageFile" type="xs:string" />
+            <xs:element name="worms" type="WormsType" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

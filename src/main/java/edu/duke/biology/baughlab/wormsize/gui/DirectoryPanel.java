@@ -1,0 +1,213 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package edu.duke.biology.baughlab.wormsize.gui;
+import edu.duke.biology.baughlab.wormsize.xml.*;
+import edu.duke.biology.baughlab.wormsize.*;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import javax.swing.JOptionPane;
+import java.util.*;
+import javax.swing.JFileChooser;
+/**
+ *
+ * @author bradleymoore
+ */
+public class DirectoryPanel extends javax.swing.JPanel implements IValidate {
+    protected ArrayList<File> inputDirectories;
+    protected DirectorySettingsType dst;
+    
+    /**
+     * Creates new form DirectoryPanel
+     */
+    public DirectoryPanel(DirectorySettingsType dst) {
+        initComponents();
+        this.dst = dst;
+        
+        inputText.setText(dst.getInputDirectory());
+        outputText.setText(dst.getOutputDirectory());
+        subdirCheck.setSelected(dst.isRunOnSubdirectories());
+        
+        inputButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                File f = new File(inputText.getText());
+                String s = browseDirectory(f);
+                if (s != null) {
+                    inputText.setText(s);
+                }
+            }
+        });
+        
+        outputButton.addActionListener(new java.awt.event.ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                File f = new File(outputText.getText());
+                String s = browseDirectory(f);
+                if (s != null) {
+                    outputText.setText(s);
+                }
+            }
+        });
+    }
+
+    public ArrayList<File> getInputDirectories() {
+        return inputDirectories;
+    }
+    
+    protected String browseDirectory(File start) {
+        File ans = null;
+        JFileChooser jfc = new JFileChooser("Choose Directory...");
+        jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
+        if (start.exists()) {
+            jfc.setCurrentDirectory(start);
+        }
+        
+        int ret = jfc.showDialog(this, "Choose Directory...");
+        if (ret == JFileChooser.APPROVE_OPTION) {
+            ans = jfc.getSelectedFile();
+        }
+        
+        return ans.getAbsolutePath();
+    }
+    
+    @Override
+    public boolean valid() {        
+        File f1 = new File(inputText.getText());
+        File f2 = new File(outputText.getText());
+               
+        
+        if (! f1.exists()) {
+            JOptionPane.showMessageDialog(this, String.format("Directory: %s does not exist.", f1.getAbsolutePath()));            
+            return false;
+        }
+        
+        if (! subdirCheck.isSelected() && f1.listFiles(new ImageFileFilter()).length == 0) {
+            JOptionPane.showMessageDialog(this, String.format("Directory: %s does not contain any images.", f1.getAbsolutePath()));
+            return false;
+        }
+        
+        if (subdirCheck.isSelected() && f1.listFiles(new ImageDirectoryFileFilter()).length == 0 && f1.listFiles(new ImageFileFilter()).length == 0) {
+            JOptionPane.showMessageDialog(this, String.format("Directory: %s does not contain any images.", f1.getAbsolutePath()));
+            return false;
+        }
+        
+        if (subdirCheck.isSelected() && f1.listFiles(new ImageDirectoryFileFilter()).length == 0) {
+            JOptionPane.showMessageDialog(this, String.format("Directory: %s does not contain any subdirectories with images.", f1.getAbsolutePath()));
+        }
+        
+        dst.setInputDirectory(f1.getAbsolutePath());
+        
+        if (f2.exists()) {
+            int res = JOptionPane.showConfirmDialog(this, String.format("Directory: %s exists.  Overwrite?", f2.getAbsolutePath()), "Overwrite Directory?", JOptionPane.OK_CANCEL_OPTION);
+            if (res == JOptionPane.CANCEL_OPTION) {
+                return false;
+            }
+        }                    
+        else if (! f2.mkdirs()) {
+            JOptionPane.showMessageDialog(this, String.format("Could not create directory: %s", f2.getAbsolutePath()));
+            return false;
+        }
+        dst.setOutputDirectory(f2.getAbsolutePath());
+        
+        inputDirectories = new ArrayList<File>();
+        if (subdirCheck.isSelected()) {
+            inputDirectories.addAll(Arrays.asList(f1.listFiles(new ImageDirectoryFileFilter())));
+        }
+       
+        // if there were no subdirectories or the checkbox isn't marked
+        if (inputDirectories.isEmpty() || ! subdirCheck.isSelected()) {
+            inputDirectories.add(f1);
+        }
+        
+   
+        dst.setRunOnSubdirectories(subdirCheck.isSelected());
+        return true;
+    }
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        inputButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        inputText = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        outputText = new javax.swing.JTextField();
+        outputButton = new javax.swing.JButton();
+        subdirCheck = new javax.swing.JCheckBox();
+
+        inputButton.setText("Browse...");
+
+        jLabel1.setText("Input Directory:");
+
+        inputText.setText("jTextField1");
+
+        jLabel2.setText("Output Directory:");
+
+        outputText.setText("jTextField2");
+
+        outputButton.setText("Browse...");
+
+        subdirCheck.setText("Run on Subdirectories");
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel1)
+                            .add(jLabel2))
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(outputText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                            .add(inputText))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(inputButton)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, outputButton)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(0, 0, Short.MAX_VALUE)
+                        .add(subdirCheck)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(inputButton)
+                    .add(jLabel1)
+                    .add(inputText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2)
+                    .add(outputText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(outputButton))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(subdirCheck)
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton inputButton;
+    private javax.swing.JTextField inputText;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton outputButton;
+    private javax.swing.JTextField outputText;
+    private javax.swing.JCheckBox subdirCheck;
+    // End of variables declaration//GEN-END:variables
+}
