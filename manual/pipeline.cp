@@ -90,7 +90,7 @@ RunImageJ:[module_num:5|svn_version:\'10884\'|variable_revision_number:3|show_wi
     Command or macro?:Command
     Command\x3A:WormSizer Batch
     Macro\x3A:run("Invert");
-    Options\x3A:xmlfile=\x5BC\x3A\\Users\\Brad\\Desktop\\CellProfilerTest\\results.xml\x5D csvfile=\x5BC\x3A\\Users\\Brad\\Desktop\\CellProfilerTest\\results.csv\x5D micronsperpixel=1.0 minarea=0.0 maxarea=999999.0 minscore=0.0 imagefile=\x5Bdummy-image.tif\x5D experimentid=\x5BmyExperiment\x5D
+    Options\x3A:xmlfile=\x5BC\x3A\\Users\\Brad\\Desktop\\CellProfilerTest\\results.xml\x5D csvfile=\x5BC\x3A\\Users\\Brad\\Desktop\\CellProfilerTest\\results.csv\x5D micronsperpixel=1.0 minarea=0.0 maxarea=999999.0 minscore=0.0 imagefile=\x5Bdummy-image.tif\x5D experimentid=\x5BmyExperiment\x5D sampleinterval=10
     Set the current image?:Yes
     Current image\x3A:SegInvertBinary
     Get the current image?:No

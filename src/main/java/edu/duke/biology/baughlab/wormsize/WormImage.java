@@ -33,10 +33,10 @@ public class WormImage {
      * @param maxArea
      * @param minSkeletonScore 
      */
-    public void process(ImagePlus image, double micronsPerPixel, double ballSize, String thresholdMethod, double closeRadius, double minArea, double maxArea, double minSkeletonScore, String imageFile) 
+    public void process(ImagePlus image, double micronsPerPixel, double ballSize, String thresholdMethod, double closeRadius, double minArea, double maxArea, double minSkeletonScore, String imageFile, int sampleInterval) 
     {
         ImagePlus thresh = getThresholdedImage(image, ballSize, thresholdMethod, closeRadius);
-        process(micronsPerPixel, thresh, minArea, maxArea, minSkeletonScore, imageFile);
+        process(micronsPerPixel, thresh, minArea, maxArea, minSkeletonScore, imageFile, sampleInterval);
         thresh.close();
     }
     
@@ -86,7 +86,7 @@ public class WormImage {
      * @param maxArea
      * @param minSkeletonScore 
      */
-    public void process(double micronsPerPixel, ImagePlus segmented, double minArea, double maxArea, double minSkeletonScore, String imageFile)
+    public void process(double micronsPerPixel, ImagePlus segmented, double minArea, double maxArea, double minSkeletonScore, String imageFile, int sampleInterval)
     {
         PolygonComponentFinder pcf = new PolygonComponentFinder(minArea, maxArea);
         pcf.find(segmented);
@@ -105,7 +105,7 @@ public class WormImage {
             }
         }
         
-        worms = Worm.getInstances(sw.getSkeletons(), pcf.getPolygons());
+        worms = Worm.getInstances(sw.getSkeletons(), pcf.getPolygons(), sampleInterval);
         setWormOutput(imageFile, micronsPerPixel);
     }
     

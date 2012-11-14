@@ -142,12 +142,44 @@ public class ReviewFrame extends javax.swing.JFrame {
         setFocusable(true);
     }
     
+    protected boolean hasNextImage() {
+        return getNextImage() != -1;
+    }
+    
+    protected boolean hasPrevImage() {
+        return getPrevImage() != -1;
+    }
+    
+    protected int getNextImage() {
+        int ans = -1;
+        
+        for (int i = curImage + 1; i < eot.getWormOutputs().getWormOutput().size() && ans == -1; i++) {
+            if (eot.getWormOutputs().getWormOutput().get(i).getWorms().getWorm().size() > 0) {
+                ans = i;
+            }
+        }
+        
+        return ans;
+    }
+    
+    protected int getPrevImage() {
+        int ans = -1;
+        
+        for (int i = curImage - 1; i >= 0 && ans == -1; i--) {
+            if (eot.getWormOutputs().getWormOutput().get(i).getWorms().getWorm().size() > 0) {
+                ans = i;
+            }
+        }   
+        
+        return ans;
+    }
+    
     protected void setPass(Boolean pass) {
         eot.getWormOutputs().getWormOutput().get(curImage).getWorms().getWorm().get(curWorm).setPass(pass);
         writeExperiment(eot);
         
         if (pass != null) {
-            if (eot.getWormOutputs().getWormOutput().size() == curImage+1 && eot.getWormOutputs().getWormOutput().get(curImage).getWorms().getWorm().size() == curWorm+1) {
+            if (! hasNextImage() && eot.getWormOutputs().getWormOutput().get(curImage).getWorms().getWorm().size() == curWorm+1) {
                 tryCancel(true);
             }
             else {
@@ -187,11 +219,11 @@ public class ReviewFrame extends javax.swing.JFrame {
     }
     
     protected void checkButtons() {
-        prevImageButton.setEnabled(curImage > 0);
-        prevWormButton.setEnabled(curImage > 0 || curWorm > 0);
+        prevImageButton.setEnabled(hasPrevImage());
+        prevWormButton.setEnabled(hasPrevImage() || curWorm > 0);
         
-        nextWormButton.setEnabled(curWorm < eot.getWormOutputs().getWormOutput().get(curImage).getWorms().getWorm().size() - 1 || curImage < eot.getWormOutputs().getWormOutput().size() - 1);
-        nextImageButton.setEnabled(curImage < eot.getWormOutputs().getWormOutput().size() - 1);        
+        nextWormButton.setEnabled(curWorm < eot.getWormOutputs().getWormOutput().get(curImage).getWorms().getWorm().size() - 1 || hasNextImage());
+        nextImageButton.setEnabled(hasNextImage());        
         
         Boolean pass = eot.getWormOutputs().getWormOutput().get(curImage).getWorms().getWorm().get(curWorm).isPass();
         passToggle.setSelected(pass != null && pass);
@@ -211,7 +243,7 @@ public class ReviewFrame extends javax.swing.JFrame {
     }
     
     protected void incImage() {
-        curImage++;
+        curImage = getNextImage();
         curWorm = 0;
         loadImage(curImage);
         checkButtons();
@@ -222,25 +254,17 @@ public class ReviewFrame extends javax.swing.JFrame {
             loadPrevWorm();            
         }
         else {
-            decImage();
+            getPrevImage();
         }
         checkButtons();
     }
     
     protected void decImage() {
-        curImage--;
+        curImage = getPrevImage();
         curWorm = eot.getWormOutputs().getWormOutput().get(curImage).getWorms().getWorm().size() - 1;
         loadImage(curImage);
         reviewImage.renderOnly(curWorm);
         checkButtons();
-    }
-    
-    public boolean hasPrev() {
-        return curImage > 0 || curWorm > 0;
-    }
-    
-    public boolean hasNext() {
-        return curImage < eot.getWormOutputs().getWormOutput().size() - 1 || curWorm < eot.getWormOutputs().getWormOutput().get(curImage).getWorms().getWorm().size() - 1;
     }
     
     public void start() {
@@ -251,8 +275,15 @@ public class ReviewFrame extends javax.swing.JFrame {
             throw new ReviewFrameException("Couldn't open file", e);
         }
         
-        loadImage(curImage);
-        checkButtons();
+        curImage = -1;
+        if (hasNextImage()) {
+            curImage = getNextImage();
+            loadImage(curImage);
+            checkButtons();
+        }
+        else {
+            tryCancel(true);
+        }
     }
     
     protected void loadImage(int i) {

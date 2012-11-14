@@ -12,6 +12,7 @@ import edu.duke.biology.baughlab.wormsize.xml.*;
 import edu.duke.biology.baughlab.wormsize.ImageFileFilter;
 import java.util.ArrayList;
 import ij.ImagePlus;
+import java.math.BigInteger;
 import java.util.List;
 import javax.swing.JLabel;
 
@@ -32,8 +33,9 @@ public class WormSizerWorker extends javax.swing.SwingWorker<ArrayList<Experimen
     protected double maxWormArea;
     protected double minTubenessScore;
     protected ProgressFrame progressFrame;
+    protected int sampleInterval;
 
-    public WormSizerWorker(ArrayList<File> inputDirectories, File outputDirectory, double micronsPerPixel, double rollingBallRadius, String thresholdMethod, double closeRadius, double minWormArea, double maxWormArea, double minTubenessScore) {
+    public WormSizerWorker(ArrayList<File> inputDirectories, File outputDirectory, double micronsPerPixel, double rollingBallRadius, String thresholdMethod, double closeRadius, double minWormArea, double maxWormArea, double minTubenessScore, int sampleInterval) {
         this.inputDirectories = inputDirectories;
         this.outputDirectory = outputDirectory;
         this.micronsPerPixel = micronsPerPixel;
@@ -43,6 +45,7 @@ public class WormSizerWorker extends javax.swing.SwingWorker<ArrayList<Experimen
         this.minWormArea = minWormArea;
         this.maxWormArea = maxWormArea;
         this.minTubenessScore = minTubenessScore;
+        this.sampleInterval = sampleInterval;
     }
 
     public void setProgressFrame(ProgressFrame progressFrame) {
@@ -65,6 +68,7 @@ public class WormSizerWorker extends javax.swing.SwingWorker<ArrayList<Experimen
             est.setMinWormArea(minWormArea);
             est.setMaxWormArea(maxWormArea);
             est.setMinTubeness(minTubenessScore);
+            est.setSampleInterval(new BigInteger(Integer.toString(sampleInterval)));
             eot.setExperimentSettings(est);
             eot.setWormOutputs(new WormOutputsType());
            
@@ -76,7 +80,7 @@ public class WormSizerWorker extends javax.swing.SwingWorker<ArrayList<Experimen
                     WormImage wi = new WormImage();
                     ImagePlus ip = ij.IJ.openImage(img.getAbsolutePath());  
                     String imgPath = PathTool.getRelativeFilePath(outputDirectory.getAbsolutePath(), img.getAbsolutePath());
-                    wi.process(ip, micronsPerPixel, rollingBallRadius, thresholdMethod, closeRadius, minWormArea, maxWormArea, minTubenessScore, imgPath);
+                    wi.process(ip, micronsPerPixel, rollingBallRadius, thresholdMethod, closeRadius, minWormArea, maxWormArea, minTubenessScore, imgPath, sampleInterval);
                     ip.close();
                     eot.getWormOutputs().getWormOutput().add(wi.getWormOutput());                
                 }

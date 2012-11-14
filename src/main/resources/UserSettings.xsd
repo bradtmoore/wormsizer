@@ -10,6 +10,7 @@ and open the template in the editor.
     <xs:element name="userSettings" type="UserSettingsType" />
     <xs:complexType name="UserSettingsType">
         <xs:sequence>
+            <xs:element name="version" type="xs:string"/>
             <xs:element name="reviewDefaultDirectory" type="xs:string" />
             <xs:element name="directorySettings" type="DirectorySettingsType" />                    
             <xs:element name="resolutionSettings" type="ResolutionSettingsType" />
@@ -41,6 +42,7 @@ and open the template in the editor.
             <xs:element name="minTubeness" type="xs:double" />
             <xs:element name="doReview" type="xs:boolean" />
             <xs:element name="doPreview" type="xs:boolean" />
+            <xs:element name="sampleInterval" type="xs:integer" />
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

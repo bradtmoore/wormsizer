@@ -44,7 +44,7 @@ public class WormImageTest extends TestCase {
         double maxArea = Double.MAX_VALUE;
         double minSkeletonScore = 0.0;
         WormImage instance = new WormImage();
-        instance.process(image, micronsPerPixel, ballSize, "Minimum", closeRadius, minArea, maxArea, minSkeletonScore, "happy.tif");
+        instance.process(image, micronsPerPixel, ballSize, "Minimum", closeRadius, minArea, maxArea, minSkeletonScore, "happy.tif", 10);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

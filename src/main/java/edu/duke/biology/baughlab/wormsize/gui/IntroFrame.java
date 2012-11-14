@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JFileChooser;
 import java.io.File;
+import ij.IJ;
 import javax.swing.event.HyperlinkEvent;
 
 /**
@@ -75,7 +76,8 @@ public class IntroFrame extends javax.swing.JFrame implements java.beans.Propert
             }
             catch (BindingFactoryException e) {
                 userSettings = UserSettingsDefault.getInstance();
-                throw new IntroFrameException(String.format("Could not read, loading default: %s", userSettingsFile.getAbsolutePath()), e);
+                //throw new IntroFrameException(String.format("Could not read, loading default: %s", userSettingsFile.getAbsolutePath()), e);
+                IJ.log(String.format("Could not read, loading default: %s", userSettingsFile.getAbsolutePath()));
             }
         }
         else {

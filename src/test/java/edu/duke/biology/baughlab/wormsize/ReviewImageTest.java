@@ -39,7 +39,7 @@ public class ReviewImageTest extends TestCase {
         ij.ImagePlus ip2 = ij.IJ.openImage("./test-resources/test3.tif");
         WormImage wi = new WormImage();
         ExperimentOutputType eot = new ExperimentOutputType();
-        wi.process(ip, 1, 75, "Minimum", 5, 0, Double.MAX_VALUE, 0, "happy.tif");
+        wi.process(ip, 1, 75, "Minimum", 5, 0, Double.MAX_VALUE, 0, "happy.tif", 10);
         
         
         ReviewImage instance = new ReviewImage(wi.getWormOutput(), ip2);

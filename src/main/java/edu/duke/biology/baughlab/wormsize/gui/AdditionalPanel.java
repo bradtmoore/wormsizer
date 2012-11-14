@@ -10,6 +10,7 @@ import java.io.File;
 import edu.duke.biology.baughlab.wormsize.ReviewImage;
 import edu.duke.biology.baughlab.wormsize.WormImage;
 import java.awt.event.ActionEvent;
+import java.math.BigInteger;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,7 +46,19 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
         minTubeText.setText(Double.toString(ast.getMinTubeness()));
         previewCheck.setSelected(ast.isDoPreview());
         reviewCheck.setSelected(ast.isDoReview());
+        sampleIntervalText.setText(ast.getSampleInterval().toString());
 
+        sampleIntervalText.addActionListener(new java.awt.event.ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (valid()) {
+                    checkAndShow();
+                }
+            }
+            
+        });
+        
         rollingText.addActionListener(new java.awt.event.ActionListener() {
 
             @Override
@@ -128,7 +141,7 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
         if (previewCheck.isSelected() && valid()) {
             WormImage wi = new WormImage();
             ImagePlus ip = ij.IJ.openImage(previewPath.getAbsolutePath());
-            wi.process(ip, ust.getResolutionSettings().getMicronsPerPixel(), ast.getRollingBallRadius(), ast.getThresholdMethod(), ast.getCloseRadius(), ast.getMinWormArea(), ast.getMaxWormArea(), ast.getMinTubeness(), previewPath.getName());
+            wi.process(ip, ust.getResolutionSettings().getMicronsPerPixel(), ast.getRollingBallRadius(), ast.getThresholdMethod(), ast.getCloseRadius(), ast.getMinWormArea(), ast.getMaxWormArea(), ast.getMinTubeness(), previewPath.getName(), ast.getSampleInterval().intValue());
             ip.close();
             
             if (previewImage == null) {
@@ -188,6 +201,10 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
         } catch (NumberFormatException e) {
             ans = "Value must be a real number: Minimum Tubeness Filter";
         }
+        
+     
+        ast.setSampleInterval(new BigInteger(sampleIntervalText.getText()));
+        
 
         ast.setThresholdMethod((String)this.thresholdCombo.getSelectedItem());
         if (ans != null) {
@@ -223,6 +240,8 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
         jLabel6 = new javax.swing.JLabel();
         previewCheck = new javax.swing.JCheckBox();
         reviewCheck = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        sampleIntervalText = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(463, 245));
 
@@ -269,6 +288,20 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
 
         reviewCheck.setText("Review after Processing");
         reviewCheck.setEnabled(false);
+        reviewCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reviewCheckActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Sample Interval Width:");
+
+        sampleIntervalText.setText("jTextField2");
+        sampleIntervalText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sampleIntervalTextActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -286,15 +319,15 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
                         .addContainerGap())))
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(reviewCheck)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(previewCheck)
+                        .add(101, 101, 101))
                     .add(layout.createSequentialGroup()
                         .add(78, 78, 78)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel1)
-                                    .add(jLabel3)
-                                    .add(jLabel2))
-                                .add(0, 0, Short.MAX_VALUE))
                             .add(layout.createSequentialGroup()
                                 .add(jLabel5)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -306,12 +339,15 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jLabel6)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(maxAreaText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(previewCheck)
-                            .add(reviewCheck))))
+                                .add(maxAreaText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabel7)
+                                    .add(jLabel1)
+                                    .add(jLabel3)
+                                    .add(jLabel2))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(sampleIntervalText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -329,7 +365,7 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
                     .add(closeRadiusText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(16, 16, 16)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(maxAreaText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -340,11 +376,18 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel5)
                     .add(minTubeText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(reviewCheck)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(previewCheck)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(51, 51, 51)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(previewCheck)
+                            .add(reviewCheck)))
+                    .add(layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(sampleIntervalText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel7))))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -355,6 +398,15 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
     private void minAreaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minAreaTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_minAreaTextActionPerformed
+
+    private void reviewCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reviewCheckActionPerformed
+
+    private void sampleIntervalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sampleIntervalTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sampleIntervalTextActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField closeRadiusText;
     private javax.swing.JLabel jLabel1;
@@ -363,12 +415,14 @@ public class AdditionalPanel extends javax.swing.JPanel implements IValidate {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField maxAreaText;
     private javax.swing.JTextField minAreaText;
     private javax.swing.JTextField minTubeText;
     private javax.swing.JCheckBox previewCheck;
     private javax.swing.JCheckBox reviewCheck;
     private javax.swing.JTextField rollingText;
+    private javax.swing.JTextField sampleIntervalText;
     private javax.swing.JComboBox thresholdCombo;
     // End of variables declaration//GEN-END:variables
 }

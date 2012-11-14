@@ -23,7 +23,7 @@ public class Worm {
      * @param rois
      * @return
      */
-    public static ArrayList<Worm> getInstances(ArrayList<ArrayList<double[]>> skeletons, ArrayList<PolygonRoi> rois) {
+    public static ArrayList<Worm> getInstances(ArrayList<ArrayList<double[]>> skeletons, ArrayList<PolygonRoi> rois, int sampleInterval) {
         ArrayList<Worm> ans = new ArrayList<Worm>();
 
         for (ArrayList<double[]> skeleton : skeletons)
@@ -36,7 +36,7 @@ public class Worm {
                 {
                     if (roi.contains(pt[0], pt[1]))
                     {
-                        ans.add(new Worm(skeleton, roi, ans.size()));
+                        ans.add(new Worm(skeleton, roi, ans.size(), sampleInterval));
                         ans.get(ans.size()-1).compute();
                         break;
                     }
@@ -75,7 +75,7 @@ public class Worm {
     /**
      * Interval at which to sample the skeleton points
      */
-    protected static final int sampleInterval = 10;
+    protected int sampleInterval;
     
     /**
      * Volume of the object (piecewise sum of frustrums of cones)
@@ -117,11 +117,12 @@ public class Worm {
         this.pass = pass;
     }
 
-    public Worm(ArrayList<double[]> skeleton, PolygonRoi roi, int id) {
+    public Worm(ArrayList<double[]> skeleton, PolygonRoi roi, int id, int sampleInterval) {
         this.skeleton = skeleton;
         this.roi = roi;
         this.id = id;
         this.pass = true;
+        this.sampleInterval = sampleInterval;
         
         extendEnd(skeleton, true, roi);
         extendEnd(skeleton, false, roi);

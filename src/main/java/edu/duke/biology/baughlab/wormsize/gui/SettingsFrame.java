@@ -122,7 +122,7 @@ public class SettingsFrame extends javax.swing.JFrame implements java.beans.Prop
             setCur(cur + 1);
             if (cur >= panels.length) {
                 AdditionalSettingsType ast = userSettings.getAdditionalSettings();
-                WormSizerWorker ww = new WormSizerWorker(dp.getInputDirectories(), new File(userSettings.getDirectorySettings().getOutputDirectory()), userSettings.getResolutionSettings().getMicronsPerPixel(), ast.getRollingBallRadius(), ast.getThresholdMethod(), ast.getCloseRadius(), ast.getMinWormArea(), ast.getMaxWormArea(), ast.getMinTubeness());
+                WormSizerWorker ww = new WormSizerWorker(dp.getInputDirectories(), new File(userSettings.getDirectorySettings().getOutputDirectory()), userSettings.getResolutionSettings().getMicronsPerPixel(), ast.getRollingBallRadius(), ast.getThresholdMethod(), ast.getCloseRadius(), ast.getMinWormArea(), ast.getMaxWormArea(), ast.getMinTubeness(), ast.getSampleInterval().intValue());
                 final ProgressFrame pf = new ProgressFrame(ww);
                 pf.addPropertyChangeListener(ProgressFrame.STATUS_PROPERTY, this);
                 setVisible(false);

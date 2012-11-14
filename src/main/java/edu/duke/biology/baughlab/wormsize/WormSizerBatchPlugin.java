@@ -32,6 +32,7 @@ public class WormSizerBatchPlugin implements ij.plugin.PlugIn {
      *  minScore
      *  imageFile
      *  experimentId
+     *  sampleInterval
      */
     @Override
     public void run(String arg) {
@@ -47,6 +48,7 @@ public class WormSizerBatchPlugin implements ij.plugin.PlugIn {
             gd.addNumericField("minScore", 0.0, 8);
             gd.addStringField("imageFile", "");
             gd.addStringField("experimentId", "");
+            gd.addNumericField("sampleInterval", 0.0, 8);
             gd.showDialog();
             
             File xmlFile = new File(gd.getNextString());
@@ -57,6 +59,7 @@ public class WormSizerBatchPlugin implements ij.plugin.PlugIn {
             double minScore = gd.getNextNumber();
             String imageFile = gd.getNextString();
             String experimentId = gd.getNextString();
+            int sampleInterval = (int)gd.getNextNumber();
             
 //            File xmlFile = new File(args[0]);
 //            File csvFile = new File(args[1]);
@@ -69,7 +72,7 @@ public class WormSizerBatchPlugin implements ij.plugin.PlugIn {
 
             WormImage wi = new WormImage();
             ImagePlus imp = new ImagePlus("",ij.IJ.getImage().getProcessor().convertToByte(false));
-            wi.process(micronsPerPixel, imp, minArea, maxArea, minScore, imageFile);
+            wi.process(micronsPerPixel, imp, minArea, maxArea, minScore, imageFile, sampleInterval);
 
             // if the xml file exists, open it otherwise create a new one
             ExperimentOutputType eot = null;

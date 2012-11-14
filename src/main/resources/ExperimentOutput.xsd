@@ -31,6 +31,7 @@ and open the template in the editor.
             <xs:element name="minWormArea" type="xs:double" />
             <xs:element name="maxWormArea" type="xs:double" />
             <xs:element name="minTubeness" type="xs:double" />
+            <xs:element name="sampleInterval" type="xs:integer" />
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

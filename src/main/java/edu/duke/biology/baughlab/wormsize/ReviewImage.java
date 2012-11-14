@@ -37,7 +37,11 @@ public class ReviewImage extends ij.ImagePlus {
     public void show() {
         super.show();
         setOverlay(new ij.gui.Overlay());
-        render(curPos);
+        
+        // check to deal with cases where the segmentation fails completely
+        if (wot.getWorms().getWorm().size() > 0) {
+            render(curPos);
+        }
         //this.setHideOverlay(false);
         //updateAndRepaintWindow();   
     }
