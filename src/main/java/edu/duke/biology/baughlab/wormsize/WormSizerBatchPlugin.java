@@ -40,6 +40,10 @@ public class WormSizerBatchPlugin implements ij.plugin.PlugIn {
             //UNGH, arg doesn't work the way I thought...
             //String[] args = arg.split(",");
             GenericDialog gd = new GenericDialog("WormSizer Batch");
+            gd.addCheckbox("isSegmented", true);
+            gd.addNumericField("ballRadius", 50.0, 8);
+            gd.addStringField("method", "Minimum");
+            gd.addNumericField("closeRadius", 4.0, 8);
             gd.addStringField("xmlFile", "");
             gd.addStringField("csvFile", "");
             gd.addNumericField("micronsPerPixel", 1.0, 8);
@@ -51,6 +55,10 @@ public class WormSizerBatchPlugin implements ij.plugin.PlugIn {
             gd.addNumericField("sampleInterval", 0.0, 8);
             gd.showDialog();
             
+            boolean isSegmented = gd.getNextBoolean();
+            double ballRadius = gd.getNextNumber();
+            String method = gd.getNextString();
+            double closeRadius = gd.getNextNumber();
             File xmlFile = new File(gd.getNextString());
             File csvFile = new File(gd.getNextString());
             double micronsPerPixel = gd.getNextNumber();
@@ -72,7 +80,13 @@ public class WormSizerBatchPlugin implements ij.plugin.PlugIn {
 
             WormImage wi = new WormImage();
             ImagePlus imp = new ImagePlus("",ij.IJ.getImage().getProcessor().convertToByte(false));
-            wi.process(micronsPerPixel, imp, minArea, maxArea, minScore, imageFile, sampleInterval);
+            
+            if (isSegmented) {
+                wi.process(micronsPerPixel, imp, minArea, maxArea, minScore, imageFile, sampleInterval);
+            }
+            else {
+                wi.process(imp, micronsPerPixel, ballRadius, method, closeRadius, minArea, maxArea, minScore, imageFile, sampleInterval);
+            }
 
             // if the xml file exists, open it otherwise create a new one
             ExperimentOutputType eot = null;
