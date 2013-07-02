@@ -9,7 +9,7 @@ if you have any questions or problems with WormSizer.  Please put WormSizer in t
 subject of the email.
 
 
-To install:
+##To install:
 1.  [Download Fiji](http://fiji.sc/Downloads)
 2.  Install Fiji
 3.  [Download WormSizer](release.zip)
@@ -20,7 +20,7 @@ To install:
 7.  WormSizer is now installed in Fiji -> Plugins -> WormSizer -> WormSizer GUI
 
 
-To build:
+##To build:
 1.  Install Maven
 2.  Cd into project directory
 3.  Run mvn -D skipTests=true assembly:assembly
