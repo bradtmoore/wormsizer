@@ -8,6 +8,9 @@ Feel free to contact me at [brad.t.moore@duke.edu](mailto:brad.t.moore@duke.edu)
 if you have any questions or problems with WormSizer.  Please put WormSizer in the
 subject of the email.
 
+## Installation Video Tutorial
+View the screen cast [here] (http://people.duke.edu/~bm93/wormsizer-install.swf) (flash required).
+
 
 ##To install:
 1.  [Download Fiji](http://fiji.sc/Downloads)

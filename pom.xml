@@ -5,7 +5,7 @@
     <groupId>edu.duke.biology.baughlab</groupId>
     <artifactId>WormSize</artifactId>
     <packaging>jar</packaging>
-    <version>1.1</version>
+    <version>1.1.1</version>
     <name>WormSize</name>
     <url>http://maven.apache.org</url>
     <dependencies>

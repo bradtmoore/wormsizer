@@ -163,7 +163,7 @@ public class IntroFrame extends javax.swing.JFrame implements java.beans.Propert
 
         editorPane.setEditable(false);
         editorPane.setEditorKit(new  javax.swing.text.html.HTMLEditorKit());
-        editorPane.setText("<html>\n<body>\nWormSizer is developed at the <a href=\"http://www.biology.duke.edu/baughlab/\">Baugh Lab</a>.<br/>\n<br/>\nInstructions can be found <a href=\"http://www.duke.edu/~bm93/wormsizer.html\">here</a>.<br/>\n<br/>\nWormSizer is free to use and open source.  If you use WormSizer results in your work, please cite us:<br/>\n<a href=\"\">[To Be Added]</a>\n</body>\n</html>");
+        editorPane.setText("<html>\n<body>\nWormSizer is developed at the <a href=\"http://www.biology.duke.edu/baughlab/\">Baugh Lab</a>.<br/>\n<br/>\nUpdates and instructions can be found <a href=\"https://github.com/bradtmoore/wormsizer\">here</a>.<br/>\n<br/>\nWormSizer is free to use and open source.  If you use WormSizer results in your work, please cite us:<br/>\n<a href=\"http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0057142\">Moore BT, Jordan JM, Baugh LR (2013) WormSizer: High-throughput Analysis of Nematode Size and Shape. PLoS ONE 8(2): e57142. doi:10.1371/journal.pone.0057142</a>\n</body>\n</html>");
         editorPane.setFocusable(false);
         jScrollPane1.setViewportView(editorPane);
 
