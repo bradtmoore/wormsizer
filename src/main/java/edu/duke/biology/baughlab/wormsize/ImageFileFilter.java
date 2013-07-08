@@ -25,7 +25,6 @@ public class ImageFileFilter implements java.io.FileFilter {
                 break;
             }
         }
-        
         return pass;
     } 
 }

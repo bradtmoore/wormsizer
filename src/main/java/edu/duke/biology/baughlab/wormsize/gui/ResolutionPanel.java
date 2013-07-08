@@ -31,21 +31,13 @@ public class ResolutionPanel extends javax.swing.JPanel implements IValidate {
         initComponents();
         this.rst = rst;
         
-        boolean hasMicrometer = new File(rst.getMicrometerFile()).exists();
-        if (hasMicrometer) {
+        micrometer = new Micrometer();
+        if (micrometer.open(new File(rst.getMicrometerFile()))) {
             micrometerText.setText(rst.getMicrometerFile());
-            micrometer = new Micrometer();
-            try {                
-                micrometer.open(new File(micrometerText.getText()));
-                hasMicrometerFile(micrometer);
-                objectiveCombo.setSelectedItem(rst.getObjective());
-                zoomText.setText(Double.toString(rst.getZoom()));
-                computeMicronsPerPixel();
-            }
-            catch (IOException e) {
-                hasMicrometer = false;
-            }
-            
+            hasMicrometerFile(micrometer);
+            objectiveCombo.setSelectedItem(rst.getObjective());
+            zoomText.setText(Double.toString(rst.getZoom()));
+            computeMicronsPerPixel();    
         }
         else {
             micrometerText.setText("");
@@ -55,7 +47,6 @@ public class ResolutionPanel extends javax.swing.JPanel implements IValidate {
         }
         
         micrometerText.addActionListener(new java.awt.event.ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 micrometerTextChanged();
@@ -110,20 +101,13 @@ public class ResolutionPanel extends javax.swing.JPanel implements IValidate {
     }
     
     protected void micrometerTextChanged() {
-        boolean hasMicrometer = new File(micrometerText.getText()).exists();
-        if (hasMicrometer) {            
-            micrometer = new Micrometer();
-            try {                
-                micrometer.open(new File(micrometerText.getText()));
-                hasMicrometerFile(micrometer);
-                computeMicronsPerPixel();
-            }
-            catch (IOException e) {
-                JOptionPane.showMessageDialog(this, String.format("Error reading micrometer file: %s", e.getMessage()));
-            }
+        micrometer = new Micrometer();
+        if (micrometer.open(new File(micrometerText.getText()))) {            
+            hasMicrometerFile(micrometer);
+            computeMicronsPerPixel();
         }
         else {
-            JOptionPane.showMessageDialog(this, "File doesn't exist.");
+            JOptionPane.showMessageDialog(this, String.format("Unable to open/parse micrometer file: %s", micrometerText.getText()));
             micrometerText.setText("");            
             noMicrometerFile();
         }

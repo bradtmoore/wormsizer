@@ -5,9 +5,17 @@
     <groupId>edu.duke.biology.baughlab</groupId>
     <artifactId>WormSize</artifactId>
     <packaging>jar</packaging>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <name>WormSize</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/bradtmoore/wormsizer</url>
+    <description>An application for measuring width, length, and volume of nematodes from brightfield microscopy images</description>
+    <developers>
+        <developer>
+            <name>Brad T. Moore</name>
+            <email>brad.t.moore@duke.edu</email>
+       </developer>
+    </developers>
+    
     <dependencies>
         <dependency>
             <groupId>net.sf.opencsv</groupId>
@@ -121,8 +129,10 @@
                 <configuration>
                     <archive>                   
                         <manifest>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            
+                            <!--<addDefaultImplementationEntries>true</addDefaultImplementationEntries> -->
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            
                         </manifest>
                     </archive>
                 </configuration>

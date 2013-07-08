@@ -1,16 +1,17 @@
 
 Thanks to everyone that showed interest at the 19th International C. elegans Meeting!
 
-There is written documentation with WormSizer, however, I'll be working on producing a
-couple of video tutorials showing its use.
+In addition to the example videos, please checkout the PDF manuals that come with the software.
 
 Feel free to contact me at [brad.t.moore@duke.edu](mailto:brad.t.moore@duke.edu)
 if you have any questions or problems with WormSizer.  Please put WormSizer in the
 subject of the email.
 
 ## Installation Video Tutorial
-View the screen cast [here] (http://people.duke.edu/~bm93/wormsizer-install.swf) (flash required).
+View the screencast [here] (http://people.duke.edu/~bm93/wormsizer-install.swf) (flash required).
 
+## WormSizer Demo Video
+View the screencast [here] (http://people.duke.edu/~bm93/screencast-example_data.swf)
 
 ##To install:
 1.  [Download Fiji](http://fiji.sc/Downloads)
