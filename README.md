@@ -1,8 +1,8 @@
 ##New Installation Instructions (how to get the latest version)
 1.  If you previously installed WormSizer by copying the .jar to the Fiji directory,
 you must first remove the old plugin.
-    a.  Delete Fiji.app/plugins/WormSizer_-fiji.jar
-    b.  Restart Fiji
+    1.  Delete Fiji.app/plugins/WormSizer_-fiji.jar
+    2.  Restart Fiji
 2.  Open Fiji
 3.  Goto Help->Update Fiji
 4.  Click on Manage Update Sites
@@ -23,9 +23,10 @@ To add the surface area measurement to existing results, a script has been inclu
 1.  Make a backup of the original files
 2.  Make sure you have the latest version of WormSizer installed in Fiji
 3.  Open the command-line (Mac OS and Unix)
-4.  The script command is java -cp /Applications/Fiji.app/jars/opencsv-2.0.jar:/Applications/Fiji.app/plugins/WormSizer_-1.2.0.jar edu.duke.biology.baughlab.wormsize.AddSurfaceArea [FILES]
-   a.  [FILES] is a list of .xml files output by WormSizer (the .CSV files will be detected and updated as well).
-   b.  Replace /Applications/Fiji.app with your Fiji.app location if it is different.
+4.  The script command is 
+        ```java -cp /Applications/Fiji.app/jars/opencsv-2.0.jar:/Applications/Fiji.app/plugins/WormSizer_-1.2.0.jar edu.duke.biology.baughlab.wormsize.AddSurfaceArea [FILES]```
+   1.  [FILES] is a list of .xml files output by WormSizer (the .CSV files will be detected and updated as well).
+   2.  Replace /Applications/Fiji.app with your Fiji.app location if it is different.
 5.  The script will display each file that has been updated.
 
 Thanks to everyone that showed interest at the 19th International C. elegans Meeting!
