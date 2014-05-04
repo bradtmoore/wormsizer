@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-Install to Fiji</actionName>
+            <displayName>Install to Fiji</displayName>
+            <goals>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <imagej.app.directory>/Applications/Fiji.app</imagej.app.directory>
+            </properties>
+        </action>
+    </actions>

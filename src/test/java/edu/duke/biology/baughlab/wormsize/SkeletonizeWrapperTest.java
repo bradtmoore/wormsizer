@@ -50,7 +50,7 @@ public class SkeletonizeWrapperTest extends TestCase {
         instance.skeletonize(threshold);
         IJ.save(threshold, SKELOUT);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     public void testSkeletonize2()

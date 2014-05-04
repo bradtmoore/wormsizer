@@ -83,6 +83,11 @@ public class Worm {
     protected double volume;
 
     /**
+     * Surface area of object (piecewise sum of surface area of frustrums)
+     */
+    protected double surfaceArea;
+    
+    /**
      * Array of 4-tuples {s.x, s.y, b.x, b.y} where s is the skeleton sample pt
      * and b is the computed orthogonal intersection pt on the boundary.
      */
@@ -167,7 +172,13 @@ public class Worm {
             widths.add(w);
         }
 
+        //System.out.println("last width:" + Arrays.toString(sampleWidths.get(sampleWidths.size()-1)));
+        //System.out.println("worm: " + this.id);
+        //System.out.println("widths: " + widths);
+        //System.out.println("dists:" + dists);
+        
         volume = computeVolume();
+        surfaceArea = computeSurfaceArea();
         length = 0.0;
         for (int i = 0; i < skeleton.size() - 1; i++) {
             double[] pt1 = skeleton.get(i);
@@ -196,6 +207,14 @@ public class Worm {
         return volume;
     }
 
+    /**
+     * Returns the surface area of the worm in pixels
+     * @return 
+     */
+    public double getSurfaceArea() {
+        return surfaceArea;
+    }
+    
     public ArrayList<Double> getDists() {
         return dists;
     }
@@ -228,8 +247,36 @@ public class Worm {
         
         return ans;
     }
+    
+    /**
+     * Computes the surface area of a worm as the sum of surface areas of frustrum
+     * of cones.  Static method since I need to expose it to the script that will
+     * add the column to existing data.
+     * @param dists in pixels
+     * @param widths in pixels
+     * @return surface area in pixels
+     */
+    public static double computeSurfaceArea(ArrayList<Double> dists, ArrayList<Double> widths) {
+        double ans = 0.0;
+        
+        // piece-wise addition of surface areas of frustrums of cones
+        // A = pi * (r1 + r2) * sqrt( (r1 - r2)^2 + h^2)
+        for (int i = 0; i < dists.size(); i++)
+        {
+            double r1 = widths.get(i)/2.0;
+            double r2 = widths.get(i+1)/2.0;
 
-    protected double dist(double[] p1, double[] p2)
+            ans += Math.PI * (r1 + r2) * Math.sqrt((r1-r2)*(r1-r2) + dists.get(i)*dists.get(i));
+        }
+        
+        return ans;
+    }
+    
+    protected double computeSurfaceArea() {
+        return Worm.computeSurfaceArea(dists, widths);
+    }
+
+    public static double dist(double[] p1, double[] p2)
     {
         return Math.sqrt(Math.pow(p2[0]-p1[0],2) + Math.pow(p2[1]-p1[1],2));
     }

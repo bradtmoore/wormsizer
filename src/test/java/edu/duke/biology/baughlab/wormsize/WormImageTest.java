@@ -4,8 +4,6 @@
  */
 package edu.duke.biology.baughlab.wormsize;
 
-import edu.duke.biology.baughlab.wormsize.xml.ExperimentOutputType;
-import fiji.threshold.Auto_Threshold;
 import ij.ImagePlus;
 import ij.plugin.filter.BackgroundSubtracter;
 import junit.framework.TestCase;
@@ -46,7 +44,7 @@ public class WormImageTest extends TestCase {
         WormImage instance = new WormImage();
         instance.process(image, micronsPerPixel, ballSize, "Minimum", closeRadius, minArea, maxArea, minSkeletonScore, "happy.tif", 10);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -62,7 +60,7 @@ public class WormImageTest extends TestCase {
         WormImage instance = new WormImage();
         //instance.process(micronsPerPixel, segmented, minArea, maxArea, minSkeletonScore, "happy.tif");
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     public void testGetThresholdedImage() {
@@ -99,19 +97,4 @@ public class WormImageTest extends TestCase {
         //img
     }
     
-
-    /**
-     * Test of pointsToString method, of class WormImage.
-     */
-    public void testPointsToString() {
-        System.out.println("pointsToString");
-        int[] xpts = null;
-        int[] ypts = null;
-        WormImage instance = new WormImage();
-        String expResult = "";
-        String result = instance.pointsToString(xpts, ypts);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 }

@@ -12,7 +12,7 @@ import au.com.bytecode.opencsv.*;
  */
 public class ExperimentOutputCSV {
     public static String[] SETTINGS_HEADER = {"experimentId", "micronsPerPixel", "rollingBallRadius", "thresholdMethod", "closeRadius", "minWormArea", "maxWormArea", "minTubeness"};
-    public static String[] RESULTS_HEADER = {"experimentId", "imageFile", "id", "pass", "volume", "length", "middleWidth", "meanWidth"};
+    public static String[] RESULTS_HEADER = {"experimentId", "imageFile", "id", "pass", "volume", "length", "middleWidth", "meanWidth", "surfaceArea"};
     public static String SETTINGS_SUFFIX = "-settings.csv";
     public static String RESULTS_SUFFIX = "-results.csv";
     
@@ -72,6 +72,6 @@ public class ExperimentOutputCSV {
     
     protected static String[] wormOutputToStringArray(String experimentId, String imageFile, WormType wt) {
         String pass = (wt.isPass() == null)? "NA" : Boolean.toString(wt.isPass());
-        return new String[] {experimentId, imageFile, wt.getId().toString(), pass, Double.toString(wt.getVolume()), Double.toString(wt.getLength()), Double.toString(wt.getMiddleWidth()), Double.toString(wt.getMeanWidth())};        
+        return new String[] {experimentId, imageFile, wt.getId().toString(), pass, Double.toString(wt.getVolume()), Double.toString(wt.getLength()), Double.toString(wt.getMiddleWidth()), Double.toString(wt.getMeanWidth()), Double.toString(wt.getSurfaceArea())};        
     }
 }

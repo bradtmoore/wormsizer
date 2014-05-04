@@ -74,7 +74,7 @@ public class PolygonComponentFinderTest extends TestCase {
 
         IJ.save(ip2, POLY_OUT);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     public void testGetBufferedImage()
@@ -90,12 +90,12 @@ public class PolygonComponentFinderTest extends TestCase {
      */
     public void testGetPolygons() {
         System.out.println("getPolygons");
-        PolygonComponentFinder instance = null;
-        ArrayList expResult = null;
-        ArrayList result = instance.getPolygons();
-        assertEquals(expResult, result);
+        //PolygonComponentFinder instance = null;
+        //ArrayList expResult = null;
+        //ArrayList result = instance.getPolygons();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
 }

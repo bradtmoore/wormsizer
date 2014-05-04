@@ -34,7 +34,7 @@ public class MicrometerTest extends TestCase {
      */
     public void testGetResolution() {
         System.out.println("getResolution");
-        String objective = "1.0";
+        String objective = "1";
         double zoom = 86.0;
         Micrometer instance = new Micrometer();
         try {
@@ -50,7 +50,7 @@ public class MicrometerTest extends TestCase {
 
         //assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
 }

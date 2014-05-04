@@ -142,7 +142,8 @@ public class WormImage {
             
             w.setSampledRadii(linesToString(worm.getSampleWidths()));
             w.setSkeleton(pointsToString(worm.getSkeleton()));
-            w.setVolume(worm.getVolume() * Math.pow(micronsPerPixel, 3.0) / 1000);
+            w.setVolume(worm.getVolume() * Math.pow(micronsPerPixel, 3.0) / 1000); // volume in picoliters (not microliters)
+            w.setSurfaceArea(worm.getSurfaceArea() * micronsPerPixel * micronsPerPixel); // microns^2
             w.setMeanWidth(m * micronsPerPixel);
             
             wt.getWorm().add(w);
