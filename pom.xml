@@ -9,15 +9,15 @@
         </repository>
     </repositories>
     <parent>
-        <groupId>org.scijava</groupId>
-        <artifactId>pom-scijava</artifactId>
-        <version>1.162</version>
+        <groupId>sc.fiji</groupId>
+        <artifactId>pom-fiji</artifactId>
+        <version>16.1.0</version>
         <relativePath />
     </parent>
     <groupId>edu.duke.biology.baughlab</groupId>
     <artifactId>WormSizer_</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.0</version>
+    <version>1.2.1-SNAPSHOT</version>
     <name>WormSizer</name>
     <url>https://github.com/bradtmoore/wormsizer</url>
     <description>An application for measuring width, length, and volume of nematodes from brightfield microscopy images</description>
@@ -26,17 +26,17 @@
         <dependency>
             <groupId>net.imagej</groupId>
             <artifactId>ij</artifactId>
-            <version>1.48u</version>
+            <version>${imagej1.version}</version>
         </dependency>
         <dependency>
-            <groupId>net.sf.opencsv</groupId>
+            <groupId>au.com.bytecode</groupId>
             <artifactId>opencsv</artifactId>
-            <version>2.0</version>
+            <version>${opencsv.version}</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version>2.1</version>
+            <version>3.0.22</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -57,18 +57,17 @@
         <dependency>
             <groupId>sc.fiji</groupId>
             <artifactId>Auto_Threshold</artifactId>
-            <version>1.16-SNAPSHOT</version>
+            <version>${Auto_Threshold.version}</version>
         </dependency>
         <dependency>
             <groupId>sc.fiji</groupId>
             <artifactId>Skeletonize3D_</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>${Skeletonize3D.version}</version>
         </dependency>
         <dependency>
             <groupId>sc.fiji</groupId>
             <artifactId>AnalyzeSkeleton_</artifactId>
-            <version>2.0.0-20140417.220020-10</version>
-            <!-- <version>2.0.0-SNAPSHOT</version> -->
+            <version>${AnalyzeSkeleton.version}</version>
         </dependency>
             
 <!--        <dependency>
