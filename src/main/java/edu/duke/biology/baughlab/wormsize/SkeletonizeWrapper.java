@@ -5,12 +5,18 @@
 
 package edu.duke.biology.baughlab.wormsize;
 
+import Skeletonize3D_.Skeletonize3D_;
 import ij.ImagePlus;
-import ij.gui.*;
-import java.util.*;
-import Skeletonize3D_.*;
-import skeleton_analysis.*;
 import ij.process.ImageProcessor;
+
+import java.util.ArrayList;
+
+import skeleton_analysis.AnalyzeSkeleton_;
+import skeleton_analysis.Edge;
+import skeleton_analysis.Graph;
+import skeleton_analysis.Point;
+import skeleton_analysis.SkeletonResult;
+import skeleton_analysis.Vertex;
 
 
 /**
