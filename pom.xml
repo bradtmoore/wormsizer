@@ -11,7 +11,7 @@
     <parent>
         <groupId>sc.fiji</groupId>
         <artifactId>pom-fiji</artifactId>
-        <version>16.1.0</version>
+        <version>21.0.0</version>
         <relativePath />
     </parent>
     <groupId>edu.duke.biology.baughlab</groupId>

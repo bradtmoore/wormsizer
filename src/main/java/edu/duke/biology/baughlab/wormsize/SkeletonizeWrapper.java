@@ -5,18 +5,18 @@
 
 package edu.duke.biology.baughlab.wormsize;
 
-import Skeletonize3D_.Skeletonize3D_;
 import ij.ImagePlus;
 import ij.process.ImageProcessor;
 
 import java.util.ArrayList;
 
-import skeleton_analysis.AnalyzeSkeleton_;
-import skeleton_analysis.Edge;
-import skeleton_analysis.Graph;
-import skeleton_analysis.Point;
-import skeleton_analysis.SkeletonResult;
-import skeleton_analysis.Vertex;
+import sc.fiji.analyzeSkeleton.AnalyzeSkeleton_;
+import sc.fiji.analyzeSkeleton.Edge;
+import sc.fiji.analyzeSkeleton.Graph;
+import sc.fiji.analyzeSkeleton.Point;
+import sc.fiji.analyzeSkeleton.SkeletonResult;
+import sc.fiji.analyzeSkeleton.Vertex;
+import sc.fiji.skeletonize3D.Skeletonize3D_;
 
 
 /**
