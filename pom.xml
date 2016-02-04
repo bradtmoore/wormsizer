@@ -11,7 +11,7 @@
     <parent>
         <groupId>sc.fiji</groupId>
         <artifactId>pom-fiji</artifactId>
-        <version>16.1.0</version>
+        <version>21.0.0</version>
         <relativePath />
     </parent>
     <groupId>edu.duke.biology.baughlab</groupId>
@@ -26,12 +26,10 @@
         <dependency>
             <groupId>net.imagej</groupId>
             <artifactId>ij</artifactId>
-            <version>${imagej1.version}</version>
         </dependency>
         <dependency>
             <groupId>au.com.bytecode</groupId>
             <artifactId>opencsv</artifactId>
-            <version>${opencsv.version}</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
@@ -41,7 +39,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -57,18 +54,15 @@
         <dependency>
             <groupId>sc.fiji</groupId>
             <artifactId>Auto_Threshold</artifactId>
-            <version>${Auto_Threshold.version}</version>
         </dependency>
         <dependency>
             <groupId>sc.fiji</groupId>
             <artifactId>Skeletonize3D_</artifactId>
-            <version>${Skeletonize3D.version}</version>
         </dependency>
         <dependency>
             <groupId>sc.fiji</groupId>
             <artifactId>AnalyzeSkeleton_</artifactId>
             <!-- 3.0 and greater break WormSizer -->
-            <version>2.0.5</version>
         </dependency>
             
 <!--        <dependency>
