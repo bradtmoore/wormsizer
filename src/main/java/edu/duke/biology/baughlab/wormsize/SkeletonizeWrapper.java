@@ -20,7 +20,7 @@ import sc.fiji.analyzeSkeleton.Graph;
 import sc.fiji.analyzeSkeleton.Point;
 import sc.fiji.analyzeSkeleton.SkeletonResult;
 import sc.fiji.analyzeSkeleton.Vertex;
-import sc.fiji.skeletonize3D.Skeletonize3D_;
+import Skeletonize3D_.*;
 
 
 /**
