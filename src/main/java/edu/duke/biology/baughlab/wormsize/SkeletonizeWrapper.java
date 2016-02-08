@@ -6,7 +6,11 @@
 package edu.duke.biology.baughlab.wormsize;
 
 import ij.ImagePlus;
+import ij.gui.*;
+import java.util.*;
+import sc.fiji.analyzeSkeleton.*;
 import ij.process.ImageProcessor;
+import Skeletonize3D_.*;
 
 import java.util.ArrayList;
 
