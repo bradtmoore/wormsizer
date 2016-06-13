@@ -22,12 +22,6 @@ public class ExperimentOutputCSV {
         ExperimentOutputCSV.writeToCSV(eot, f1, f2);
     }
     
-    /**
-     * 
-     * @param eot
-     * @param outDir
-     * @throws IOException 
-     */
     public static void writeToCSV(ExperimentOutputType eot, File settingsFile, File resultsFile) throws IOException {
         
         if (settingsFile != null) {

@@ -333,7 +333,6 @@ public class Worm {
      * @param skeleton
      * @param first
      * @param roi
-     * @param sampleInterval The offset of the point to sample from the end in order to determine the tangent vector.
      */
     final protected void extendEnd(ArrayList<double[]> skeleton, boolean first, PolygonRoi roi)
     {

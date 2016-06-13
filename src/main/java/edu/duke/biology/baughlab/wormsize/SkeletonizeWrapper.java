@@ -10,7 +10,7 @@ import ij.gui.*;
 import java.util.*;
 import sc.fiji.analyzeSkeleton.*;
 import ij.process.ImageProcessor;
-import Skeletonize3D_.*;
+import sc.fiji.skeletonize3D.*;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,6 @@ import sc.fiji.analyzeSkeleton.Graph;
 import sc.fiji.analyzeSkeleton.Point;
 import sc.fiji.analyzeSkeleton.SkeletonResult;
 import sc.fiji.analyzeSkeleton.Vertex;
-import Skeletonize3D_.*;
 
 
 /**

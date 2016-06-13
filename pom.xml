@@ -11,13 +11,13 @@
     <parent>
         <groupId>sc.fiji</groupId>
         <artifactId>pom-fiji</artifactId>
-        <version>20.0.0</version>
+        <version>RELEASE</version>
         <relativePath />
     </parent>
     <groupId>edu.duke.biology.baughlab</groupId>
     <artifactId>WormSizer_</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
     <name>WormSizer</name>
     <url>https://github.com/bradtmoore/wormsizer</url>
     <description>An application for measuring width, length, and volume of nematodes from brightfield microscopy images</description>
@@ -26,6 +26,7 @@
         <dependency>
             <groupId>net.imagej</groupId>
             <artifactId>ij</artifactId>
+            <version>RELEASE</version>
         </dependency>
         <dependency>
             <groupId>au.com.bytecode</groupId>
@@ -58,6 +59,7 @@
         <dependency>
             <groupId>sc.fiji</groupId>
             <artifactId>Skeletonize3D_</artifactId>
+            <version>${Skeletonize3D.version}</version>
         </dependency>
 
 <!--        <dependency>
@@ -106,7 +108,7 @@
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.9.0</version>
+                <version>0.13.1</version>
                 <executions>
                     <execution>
                         <goals>
@@ -134,8 +136,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
 <!--            <plugin>

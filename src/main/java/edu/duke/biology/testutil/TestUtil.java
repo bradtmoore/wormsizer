@@ -5,6 +5,9 @@
 
 package edu.duke.biology.testutil;
 import java.io.*;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+
 /**
  *
  * @author bradleymoore
@@ -25,54 +28,34 @@ public class TestUtil {
     }
 
     public static void deleteAll(File f) {
-        String[] cmd = new String[]{"rm", "-r", f.getAbsolutePath()};
-        ProcessBuilder pb = new ProcessBuilder(cmd);
-        Process p = null;
-        try {
-            p = pb.start();
-            p.waitFor();
-        }
-        catch (IOException e) {
-            throw new TestUtilException(null, e);
-        }
-        catch (InterruptedException e) {
-            throw new TestUtilException(null, e);
-        }
-        finally
-        {
-            if (p != null) {
-                if (p.getErrorStream() != null) {
-                    try
-                    {
-                        p.getErrorStream().close();
-                    }
-                    catch (IOException e)
-                    {
-
-                    }
-                }
-                if (p.getInputStream() != null) {
-                    try
-                    {
-                        p.getInputStream().close();
-                    }
-                    catch (IOException e)
-                    {
-
-                    }
-                }
-                if (p.getOutputStream() != null) {
-                    try
-                    {
-                        p.getOutputStream().close();
-                    }
-                    catch (IOException e)
-                    {
-
-                    }
+     
+     Path start = FileSystems.getDefault().getPath(f.getAbsolutePath());
+     try {
+        Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
+                     
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                Files.delete(file);
+                return FileVisitResult.CONTINUE;
+            }
+              
+            @Override
+            public FileVisitResult postVisitDirectory(Path dir, IOException e)
+                throws IOException
+            {
+                if (e == null) {
+                    Files.delete(dir);
+                    return FileVisitResult.CONTINUE;
+                } else {
+                    // directory iteration failed
+                    throw e;
                 }
             }
-        }
+        });       
+     }
+     catch (IOException e) {
+         e.printStackTrace();
+     }
     }
 
     protected static class TestUtilException extends RuntimeException {

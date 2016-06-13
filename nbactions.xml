@@ -7,7 +7,7 @@
                 <goal>install</goal>
             </goals>
             <properties>
-                <imagej.app.directory>C:\\Users\\Brad_2\\Program Files\\fiji-win64\\Fiji.app</imagej.app.directory>
+                <imagej.app.directory>"C:\\Users\\bradt_fosbzhg\\Documents\\Fiji.app"</imagej.app.directory>
             </properties>
         </action>
     </actions>
