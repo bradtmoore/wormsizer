@@ -1,3 +1,9 @@
+
+
+IMPORTANT - If you've had issues with WormSizer between 1/1/2017 and 6/5/2017
+please update to Version 1.2.5.
+
+
 ##New Installation Instructions (how to get the latest version)
 1.  If you previously installed WormSizer by copying the .jar to the Fiji directory,
 you must first remove the old plugin.
@@ -12,6 +18,13 @@ you must first remove the old plugin.
 8.  Click Apply Changes
 9.  Done, you will now have the latest version of WormSizer and will receive automatic update notifications
 every time you start Fiji.
+
+##Version 1.2.5 - Major bug fix
+I've had several issues with maintaining WormSizer due to the plugins it depends on
+being modified and breaking compatibility.  In this version, I've included what I
+hope to be a long-term fix to the issue.  IMPORTANT - for the past few months the 
+most recent Fiji update has broken WormSizer functionally (heads and tails became connected).
+This update resolves this issue.
 
 ##Version 1.2.0 - Surface Area
 WormSizer now calculates surface area of nematodes.  The method is analogous to the volume calculation;
